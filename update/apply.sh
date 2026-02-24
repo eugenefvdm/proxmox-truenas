@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Apply TrueNAS coexistence on a single Proxmox node (8 or 9).
-# Usage: ./update/apply.sh <node>   e.g.  ./update/apply.sh hv02.vander.host
+# Usage: ./update/apply.sh <node>   e.g.  ./update/apply.sh pve9-tn25.10.example.com
 # Copies pre-built ZFSPlugin (from update/) + LunCmd to the node. PVE 8: optionally patches pvemanagerlib.js.
 # To restore stock: copy update/original_files/proxmoxN.ZFSPlugin.pm to the node as ZFSPlugin.pm.
 
@@ -22,8 +22,8 @@ LUNCMD="$REPO_ROOT/perl5/PVE/Storage/LunCmd/TrueNAS.pm"
 
 usage() {
     echo "Usage: $0 <node>"
-    echo "  e.g.  $0 hv02.vander.host"
-    echo "  e.g.  $0 hv09.vander.host"
+    echo "  e.g.  $0 pve9-tn25.10.example.com"
+    echo "  e.g.  $0 pve8-tn24.04.example.com"
     exit 1
 }
 

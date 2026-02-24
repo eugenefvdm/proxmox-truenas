@@ -47,7 +47,7 @@ After this, initiators from that subnet can discover and log in to the target. S
 
 ## Verifying From a Proxmox Node
 
-From a Proxmox node that will perform the migration (e.g. hv05), run:
+From a Proxmox node that will perform the migration (e.g. hvX), run:
 
 ```bash
 # Discovery (should list the target)
