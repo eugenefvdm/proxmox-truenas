@@ -15,8 +15,8 @@ Result: native plugin handles `truenas:`; patched ZFSPlugin handles `zfs:` + `is
 
 We test on **at least two nodes** so migrations and cross-node behaviour can be verified:
 
-- **hv02.vander.host**
-- **hv09.vander.host**
+- **pve9-tn25.10.example.com**
+- **pve8-tn24.04.example.com**
 
 ## Prerequisites
 
@@ -106,10 +106,10 @@ perl -c /usr/share/perl5/PVE/Storage/LunCmd/TrueNAS.pm
 
 If you applied the ZFS patch while the native TrueNAS plugin was also installed, SectionConfig can hit a duplicate-property error and pvedaemon will not start. **Restore the ZFSPlugin backup** on that node (the script creates `.bak.TIMESTAMP`), then re-apply using the **updated** patches in this repo (they use `zfs_truenas_*` property names to avoid the conflict).
 
-**One-time restore on the broken node (e.g. hv02):**
+**One-time restore on the broken node (e.g. pve9-tn25.10.example.com):**
 
 ```bash
-# On the node (ssh root@hv02.vander.host or from the host)
+# On the node (ssh root@hpve9-tn25.10.example.com or from the host)
 cp -a /usr/share/perl5/PVE/Storage/ZFSPlugin.pm.bak.TIMESTAMP /usr/share/perl5/PVE/Storage/ZFSPlugin.pm
 systemctl restart pvedaemon pvestatd pveproxy
 ```
@@ -136,8 +136,8 @@ Examples:
 
 ```bash
 chmod +x scripts/coexist-apply.sh
-./scripts/coexist-apply.sh hv02.vander.host   # Proxmox 9: copies pre-built ZFSPlugin + LunCmd
-./scripts/coexist-apply.sh hv09.vander.host    # Proxmox 8: patches ZFSPlugin + LunCmd + optional GUI
+./scripts/coexist-apply.sh pve9-tn25.10.example.com   # Proxmox 9: copies pre-built ZFSPlugin + LunCmd
+./scripts/coexist-apply.sh pve8-tn24.04.example.com    # Proxmox 8: patches ZFSPlugin + LunCmd + optional GUI
 ```
 
 The script detects Proxmox version on the node and uses the right method (pre-built for 9, patch for 8). One confirmation at the start; no server-side backups (restore from repo’s `updated_files/proxmox9.ZFSPlugin.pm` if needed).
