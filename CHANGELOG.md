@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-02-24
+
+- docs: add TrueNAS old/new API coexistence guide, iSCSI troubleshooting doc, apply script, and pre-built ZFSPlugin files for PVE 8/9
+
 ## [1.0.112](https://github.com/boomshankerx/proxmox-truenas/compare/v1.0.111...v1.0.112) (2026-02-10)
 
 
